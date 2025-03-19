@@ -2,11 +2,11 @@ import gradio as gr
 import torch
 import time
 from fpdf import FPDF
-from WhisperASR.model import load_whisper_model  # Import model loader
+from model import load_whisper_model  # Import model loader
 import os
 
 # ✅ Allowed Whisper models
-ALLOWED_MODELS = ["tiny", "base", "medium", "large", "small"]  # Added "large" and "small"
+ALLOWED_MODELS = ["tiny", "base", "medium"]  
 
 # Check for device availability
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -15,9 +15,17 @@ def load_model(model_name_or_path):
     """Load Whisper model either from predefined options or user-uploaded model file."""
     try:
         if model_name_or_path in ALLOWED_MODELS:
-            return load_whisper_model(model_name_or_path, device=device)
+            model = load_whisper_model(model_name_or_path) 
         else:
-            return load_whisper_model(model_name_or_path, device=device, custom=True)  # Custom model
+            model = load_whisper_model(model_name_or_path)  # For custom models
+
+        # Move model to GPU if available, otherwise CPU
+        if torch.cuda.is_available():
+            model = model.to("cuda")
+        else:
+            model = model.to("cpu")
+
+        return model
     except Exception as e:
         return f"❌ Error loading model: {str(e)}"
 
@@ -80,9 +88,18 @@ demo = gr.Interface(
     fn=process_audio,
     inputs=[
         gr.Audio(type="filepath", label="🎵 Upload Audio File"),
-        gr.File(label="📂 Upload Whisper Model (optional)"),
-        gr.Dropdown(choices=ALLOWED_MODELS, value="medium", label="🤖 Select Whisper Model"),
-        gr.Radio(choices=["txt", "pdf"], value="txt", label="📄 Report Format"),
+        gr.Dropdown(
+            choices=ALLOWED_MODELS,
+            value="medium",
+            label="🤖 Select a Whisper Model",
+            info="Select a model for transcription. The 'tiny' model offers faster inference at the cost of lower accuracy. The 'base' model strikes a balance between speed and accuracy, while 'medium' provides the best accuracy but may take longer to process."
+        ),
+        gr.Radio(
+            choices=["txt", "pdf"],
+            value="txt",
+            label="📄 Report Format",
+            info="Choose the format for your transcription report. TXT is a basic text file, and PDF provides a more structured, printable report."
+        ),
     ],
     outputs=[
         gr.Textbox(label="📝 Transcribed Report"),
@@ -91,7 +108,12 @@ demo = gr.Interface(
         gr.File(label="📥 Download Report"),
     ],
     title="🎙️ AI-Powered Audio Report Generator",
-    description="Upload an **audio file** 🎵 and an **optional Whisper model file**, then select from pre-trained models or use your own. Transcribe into a **structured report** 📑 available for **download** in TXT/PDF format.",
+    description=(
+        "Upload an **audio file** 🎵 and select a **Whisper model** for transcription. "
+        "You can choose from pre-trained models (Tiny, Base, Medium) depending on your need for speed and accuracy. "
+        "For faster transcription, select 'tiny'. If you need better accuracy, choose 'medium'. The 'base' model offers a balance between the two. "
+        "The transcription will be converted into a **structured report** 📑 available for download in **TXT** or **PDF** format."
+    ),
     theme="default",
 )
 

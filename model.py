@@ -14,11 +14,8 @@ def load_whisper_model(model_name):
     if model_name not in ALLOWED_MODELS:
         raise ValueError(f"❌ Invalid model selected: {model_name}")
 
-    # Get the absolute path to the current script's directory
-    current_dir = os.path.join(os.getcwd(), "WhisperASR")
-
-    # Construct the full path to the model file
-    model_path = os.path.join(current_dir, ALLOWED_MODELS[model_name])
+    # Path to the models folder in the Hugging Face Space repo
+    model_path = ALLOWED_MODELS[model_name]
 
     print(f"Checking if model weights exist at: {model_path}")  # Debugging line
 
