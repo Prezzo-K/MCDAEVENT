@@ -95,10 +95,15 @@ Below is a comparison of the ASR (Automatic Speech Recognition) metrics for the 
 
 ![ASR Metrics by Model](assets/stats_whisper.png)
 
-- **Metric**: \( \text{MPa} \) (Mean Phoneme Accuracy)
+- **Metric**: WER (Word Error Rate)	Measures the percentage of words that are incorrectly recognized in the transcription compared to the reference text. Lower WER indicates better accuracy.
+MER (Match Error Rate)	Represents the proportion of words that are incorrectly matched between the reference and transcribed text. It is another measure of transcription accuracy, where lower values are better.
+WIL (Word Information Lost)	Quantifies the amount of word information lost during the transcription process. It indicates how much of the original information is missing in the transcription. Lower WIL is preferred.
+WIP (Word Information Preserved)	Measures the proportion of word information from the reference text that is successfully preserved in the transcription. Higher WIP suggests better retention of original information.
+CER (Character Error Rate)	Similar to WER, but calculated at the character level instead of words. It measures the percentage of characters that are incorrectly recognized in the transcription. Lower CER indicates better accuracy at the character level.
+
 - **Models**: tiny, base, medium
 
-The figure highlights the performance trade-offs between the models. The **medium** model offers the highest accuracy but requires more computational resources, while the **tiny** model is faster but less accurate. The **base** model strikes a balance between the two.
+The figure highlights the performance trade-offs between the models on the small set of the given audio files and their ground truth texts. The **medium** model offers the highest accuracy but requires more computational resources, while the **tiny** model is faster but less accurate. The **base** model strikes a balance between the two.
 
 ## Authors
 
