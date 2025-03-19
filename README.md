@@ -104,7 +104,7 @@ Below is a comparison of the ASR (Automatic Speech Recognition) metrics for the 
 
 -- **Models**: tiny, base, medium
 
-The figure highlights the performance trade-offs between the models on the small set of the given audio files and their ground truth texts. The **medium** model offers the highest accuracy but requires more computational resources, while the **tiny** model is faster but less accurate. The **base** model strikes a balance between the two.
+The figure highlights the performance trade-offs between the models on the small set of the given audio files and their ground truth texts. The **medium** model offers the highest accuracy and better results but requires more computational resources, while the **tiny** model is faster but less accurate. The **base** model gives a balance between the two.
 
 ## Authors
 
