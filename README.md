@@ -89,6 +89,17 @@ The system will output a report similar to the structure of the provided clinica
 - The **medium** Whisper model requires substantial resources and may not be available in certain environments due to limitations in the system's storage. Please use the **tiny** or **base** models for lower resource consumption.
 - If you're testing on a server with storage limitations, consider using the `base` or `tiny` Whisper models.
 
+#### ASR Metrics by Model
+
+Below is a comparison of the ASR (Automatic Speech Recognition) metrics for the **tiny**, **base**, and **medium** Whisper models:
+
+![ASR Metrics by Model](assets/stats_whisper.png)
+
+- **Metric**: \( \text{MPa} \) (Mean Phoneme Accuracy)
+- **Models**: tiny, base, medium
+
+The figure highlights the performance trade-offs between the models. The **medium** model offers the highest accuracy but requires more computational resources, while the **tiny** model is faster but less accurate. The **base** model strikes a balance between the two.
+
 ## Authors
 
 - **Abdiaziz Muse** - [@AbdiazizAden](https://github.com/Prezzo-K)
