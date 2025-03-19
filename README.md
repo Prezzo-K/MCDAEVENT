@@ -95,7 +95,7 @@ Below is a comparison of the ASR (Automatic Speech Recognition) metrics for the 
 
 ![ASR Metrics by Model](assets/stats_whisper.png)
 
-- **Metric**:
+-- **Metrics**:
 - WER (Word Error Rate): Percentage of incorrectly recognized words. Lower WER means better accuracy.
 - MER (Match Error Rate): Proportion of mismatched words. Lower MER indicates better accuracy.
 - WIL (Word Information Lost): Measures lost word information. Lower WIL is preferred.
