@@ -32,6 +32,7 @@ Before running the application, ensure you have the following installed:
 
    ```bash
    git clone git@github.com:Prezzo-K/MCDAEVENT.git
+   cd MCDAEVENT
    ```
 
 2. Create a virtual environment and activate it (optional but recommended):
