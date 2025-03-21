@@ -31,7 +31,7 @@ Before running the application, ensure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/WhisperASR.git
+   git clone git@github.com:Prezzo-K/MCDAEVENT.git
    ```
 
 2. Create a virtual environment and activate it (optional but recommended):
