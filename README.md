@@ -32,7 +32,6 @@ Before running the application, ensure you have the following installed:
 
    ```bash
    git clone https://github.com/yourusername/WhisperASR.git
-   cd WhisperASR
    ```
 
 2. Create a virtual environment and activate it (optional but recommended):
